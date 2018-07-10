@@ -8,40 +8,36 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity
-public class KursUValuti implements Serializable{
+public class KursUValuti implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Version
-	protected Long version;
-	
+
 	@Column(nullable = false)
 	protected double kupovni;
-	
+
 	@Column(nullable = false)
 	protected double prodajni;
-	
+
 	@Column(nullable = false)
 	protected double srednji;
-	
+
 	@ManyToOne(optional = true)
 	protected Valuta osnovnaValuta;
 
 	@ManyToOne(optional = true)
 	protected Valuta premaValuti;
-	
+
 	@ManyToOne(optional = true)
 	protected KursnaLista kursnaLista;
-	
-	public KursUValuti(){
-		
+
+	public KursUValuti() {
+
 	}
 
 	public Long getId() {
@@ -50,14 +46,6 @@ public class KursUValuti implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public double getKupovni() {

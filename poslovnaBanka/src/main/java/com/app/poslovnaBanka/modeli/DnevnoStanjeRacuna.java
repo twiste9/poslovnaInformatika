@@ -9,41 +9,36 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Version;
 
 @Entity
-public class DnevnoStanjeRacuna implements Serializable{
+public class DnevnoStanjeRacuna implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Version
-	protected Long version;
-	
+
 	@Column(nullable = false)
 	protected Date datumPrometa;
-	
+
 	@Column(nullable = false)
 	protected double prethodnoStanje;
 
 	@Column(nullable = false)
 	protected double prometUKorist;
-	
+
 	@Column(nullable = false)
 	protected double prometNaTeret;
 
 	@Column(nullable = false)
 	protected double novoStanje;
-	
+
 	@ManyToOne(optional = true)
 	private TekuciRacun tekuciRacun;
-	
-	public DnevnoStanjeRacuna(){
-		
+
+	public DnevnoStanjeRacuna() {
+
 	}
 
 	public Long getId() {
@@ -52,14 +47,6 @@ public class DnevnoStanjeRacuna implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public Date getDatumPrometa() {

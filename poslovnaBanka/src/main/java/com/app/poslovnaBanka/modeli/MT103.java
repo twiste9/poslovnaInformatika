@@ -8,43 +8,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity
-public class MT103 implements Serializable{
+public class MT103 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Version
-	protected Long version;
-	
+
 	@Column(nullable = false)
 	protected String idPoruke;
-	
+
 	@Column(nullable = false)
 	protected String swiftDuznik;
-	
+
 	@Column(nullable = false)
 	protected String swiftPoverioc;
-	
+
 	@Column(nullable = false)
 	protected String obracunskiPoverioca;
-	
+
 	@Column(nullable = false)
 	protected String obracunskiDuznika;
-	
+
 	@Column(nullable = false)
 	protected String duznikNalogodavac;
-	
+
 	@Column(nullable = false)
 	protected String svrhaPlacanja;
-	
+
 	@Column(nullable = false)
 	protected String primalacPoverilac;
-	
+
 	@Column(nullable = false)
 	protected Date datumNaloga;
 
@@ -56,7 +52,7 @@ public class MT103 implements Serializable{
 
 	@Column(nullable = false)
 	protected int modelZaduzenja;
-	
+
 	@Column(nullable = false)
 	protected String pozivNaBrojZaduzenja;
 
@@ -74,9 +70,9 @@ public class MT103 implements Serializable{
 
 	@Column(nullable = false)
 	protected String sifraValute;
-	
-	public MT103(){
-		
+
+	public MT103() {
+
 	}
 
 	public Long getId() {
@@ -85,14 +81,6 @@ public class MT103 implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public String getIdPoruke() {
@@ -242,5 +230,5 @@ public class MT103 implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 }

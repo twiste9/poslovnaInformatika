@@ -2,39 +2,33 @@ package com.app.poslovnaBanka.modeli;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity
-public class MT102 implements Serializable{
+public class MT102 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Version
-	protected Long version;
-	
+
 	@Column(nullable = false)
 	protected String idPoruke;
-	
+
 	@Column(nullable = false)
 	protected String swiftDuznik;
-	
+
 	@Column(nullable = false)
 	protected String swiftPoverioc;
-	
+
 	@Column(nullable = false)
 	protected String obracunskiPoverioca;
-	
+
 	@Column(nullable = false)
 	protected String obracunskiDuznika;
 
@@ -49,12 +43,12 @@ public class MT102 implements Serializable{
 
 	@Column(nullable = false)
 	protected Date datum;
-	
-	@OneToMany
-	protected List<PojedinacnoPlacanje> pojedinacnaPlacanja;
-	
-	public MT102(){
-		
+
+	// @OneToMany
+	// protected List<PojedinacnoPlacanje> pojedinacnaPlacanja;
+
+	public MT102() {
+
 	}
 
 	public Long getId() {
@@ -63,14 +57,6 @@ public class MT102 implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public String getIdPoruke() {
@@ -145,16 +131,17 @@ public class MT102 implements Serializable{
 		this.datum = datum;
 	}
 
-	public List<PojedinacnoPlacanje> getPojedinacnaPlacanja() {
-		return pojedinacnaPlacanja;
-	}
-
-	public void setPojedinacnaPlacanja(List<PojedinacnoPlacanje> pojedinacnaPlacanja) {
-		this.pojedinacnaPlacanja = pojedinacnaPlacanja;
-	}
+	// public List<PojedinacnoPlacanje> getPojedinacnaPlacanja() {
+	// return pojedinacnaPlacanja;
+	// }
+	//
+	// public void setPojedinacnaPlacanja(List<PojedinacnoPlacanje>
+	// pojedinacnaPlacanja) {
+	// this.pojedinacnaPlacanja = pojedinacnaPlacanja;
+	// }
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 }

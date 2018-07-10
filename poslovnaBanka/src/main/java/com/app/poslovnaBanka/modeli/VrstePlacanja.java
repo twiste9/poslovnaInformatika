@@ -7,24 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity
-public class VrstePlacanja implements Serializable{
+public class VrstePlacanja implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Version
-	protected Long version;
-	
+
 	@Column(nullable = false)
 	protected String naziv;
-	
-	public VrstePlacanja(){
-		
+
+	public VrstePlacanja() {
+
 	}
 
 	public Long getId() {
@@ -33,14 +29,6 @@ public class VrstePlacanja implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public String getNaziv() {

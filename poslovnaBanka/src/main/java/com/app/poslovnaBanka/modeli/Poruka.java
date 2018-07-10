@@ -7,24 +7,20 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
-public class Poruka implements Serializable{
+public class Poruka implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Version
-	protected Long version;
-	
+
 	@Column(nullable = false)
-	protected String tipPoruke; //MT900 ili MT910
+	protected String tipPoruke; // MT900 ili MT910
 
 	@Column(nullable = false)
 	protected String idPoruke;
-	
+
 	@Column(nullable = false)
 	protected String swiftKodBanke;
 
@@ -32,7 +28,7 @@ public class Poruka implements Serializable{
 	protected String racunBanke;
 
 	@Column(nullable = false)
-	protected String idPorukeNaloga; //MT102 ili MT103
+	protected String idPorukeNaloga; // MT102 ili MT103
 
 	@Column(nullable = false)
 	protected Date datumValute;
@@ -42,9 +38,9 @@ public class Poruka implements Serializable{
 
 	@Column(nullable = false)
 	protected String sifraValute;
-	
-	public Poruka(){
-		
+
+	public Poruka() {
+
 	}
 
 	public Long getId() {
@@ -53,14 +49,6 @@ public class Poruka implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public String getTipPoruke() {
@@ -130,5 +118,5 @@ public class Poruka implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 }

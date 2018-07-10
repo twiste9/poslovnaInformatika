@@ -9,34 +9,36 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity
-public class TekuciRacun implements Serializable{
+public class TekuciRacun implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Version
-	protected Long version;
-	
+
 	@Column(nullable = false)
 	protected String brojRacuna;
-	
+
 	@Column(nullable = false)
 	protected boolean vazeci;
-	
+
 	@Column(nullable = false)
 	protected Date datumOtvaranja;
-	
+
 	@ManyToOne(optional = true)
-	private Klijent klijent;
-	
-	public TekuciRacun(){
-		
+	protected PravnoLice pravnoLice;
+
+	@ManyToOne(optional = true)
+	protected FizickoLice fizickoLice;
+
+	@Column(nullable = false)
+	protected String tipLica;
+
+	public TekuciRacun() {
+
 	}
 
 	public Long getId() {
@@ -45,14 +47,6 @@ public class TekuciRacun implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public String getBrojRacuna() {
@@ -79,12 +73,28 @@ public class TekuciRacun implements Serializable{
 		this.datumOtvaranja = datumOtvaranja;
 	}
 
-	public Klijent getKlijent() {
-		return klijent;
+	public PravnoLice getPravnoLice() {
+		return pravnoLice;
 	}
 
-	public void setKlijent(Klijent klijent) {
-		this.klijent = klijent;
+	public void setPravnoLice(PravnoLice pravnoLice) {
+		this.pravnoLice = pravnoLice;
+	}
+
+	public FizickoLice getFizickoLice() {
+		return fizickoLice;
+	}
+
+	public void setFizickoLice(FizickoLice fizickoLice) {
+		this.fizickoLice = fizickoLice;
+	}
+
+	public String getTipLica() {
+		return tipLica;
+	}
+
+	public void setTipLica(String tipLica) {
+		this.tipLica = tipLica;
 	}
 
 	public static long getSerialversionuid() {

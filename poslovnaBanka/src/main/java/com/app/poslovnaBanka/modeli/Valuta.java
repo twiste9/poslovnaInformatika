@@ -8,33 +8,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity
-public class Valuta implements Serializable{
+public class Valuta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Version
-	protected Long version;
-	
+
 	@Column(nullable = false)
 	protected String naziv;
-	
+
 	@Column(nullable = false)
 	protected String sifra;
-	
+
 	@Column(nullable = false)
 	protected boolean domicilna;
-	
+
 	@ManyToOne(optional = true)
 	private Drzava drzava;
-	
-	public Valuta(){
-		
+
+	public Valuta() {
+
 	}
 
 	public Long getId() {
@@ -43,14 +39,6 @@ public class Valuta implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public String getNaziv() {
@@ -88,5 +76,5 @@ public class Valuta implements Serializable{
 	public void setDrzava(Drzava drzava) {
 		this.drzava = drzava;
 	}
-	
+
 }
