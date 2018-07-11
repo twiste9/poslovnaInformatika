@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.w3c.dom.*;
-import javax.xml.parsers.*;
-import java.io.*;
-
 import com.app.poslovnaBanka.service.impl.IzvodServiceImpl;
 
 @RestController
@@ -27,6 +23,5 @@ public class IzvodKontroler {
 	public ResponseEntity<?> preuzmiIzvod(@RequestParam String brojRacuna, @RequestParam Date datum){
 		return new ResponseEntity<>(izvodService.pretraziPoDatumuIRacunu(datum, brojRacuna), HttpStatus.OK);
 	}
-	
 
 }

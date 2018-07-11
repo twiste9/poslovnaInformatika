@@ -1,6 +1,8 @@
 package com.app.poslovnaBanka.service.impl;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
 
@@ -127,12 +129,15 @@ public class IzvodServiceImpl implements IzvodService {
 		XMLOutputter xmlOutput = new XMLOutputter();
 		xmlOutput.setFormat(Format.getPrettyFormat());
 		Document doc = new Document(izvod);
+		
 		try {
-			xmlOutput.output(doc, System.out);
+			PrintWriter out = new PrintWriter("src/main/resources/static/Izvod.xml");
+			xmlOutput.output(doc, out);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return izvodRepository.findByDatumNalogaAndRacunPoveriocaOrDatumNalogaAndRacunDuznika(datum, racun, datum,
 				racun);
 	}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/scripts/izvod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<script src="/stylesheets/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Nalog za placanje</title>
+	
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-2">
+			<div style="margin: 40px;">
+				<input type="file" accept="text/xml" value="Generisi" />
+				<button >Generisi za cuvanje</button>
+				<a href="./nalog.xml" download id="preuzmi" style="visibility: hidden;">Sacuvaj</a>
+			</div>
+		</div>
+		<div class="col-sm-3" style="padding-top: 40px; padding-left: 30px;">
+			<label>Duznik - nalogodavac</label>
+			<textarea rows="2" cols="42" id="nalogodavac"></textarea>
+			<label>Svrha placanja</label>
+			<textarea rows="2" cols="42" id="svrhaPlacanja"></textarea>
+			<label>Poverilac - primalac</label>
+			<textarea rows="2" cols="42" id="primalac"></textarea>
+			<label>Mesto prijema</label>
+			<input id="mesto" type="text" style="width: 100%;"/>
+			<label>Datum prijema</label>
+			<input id="datum" type="date" style="width: 100%;" />
+		</div>
+		<div class="col-sm-3" style="padding-top: 35px; padding-left: 30px;">
+			<p style="text-align: right; font-size: 15px; font-weight: bold">Nalog za prenos</p>
+			<label style="width: 40%">Sifra placanja</label>
+			<label style="width: 25%">Valuta</label>
+			<label style="width: 30%">Iznos</label>
+			<input id="sifraPlacanja" type="text" style="width: 30%; margin-right: 10%"  />
+			<input id="valuta" type="text" style="width: 15%; margin-right: 10%"  />
+			<input id="iznos" type="text" style="width: 30%" />
+			
+			<label style="width: 100%">Racun duznika (nalogodavca)</label>
+			<input id="racunNalogodavca" type="text" style="width: 98%;"  />
+			
+			<label style="width: 35%">Model</label>
+			<label style="width: 60%">Poziv na broj (zaduzenje)</label>
+			<input id="modelZaduzenje" type="text" style="width: 25%; margin-right: 10%" />
+			<input id="pozivNaBrojZaduzenje" type="text" style="width: 62%;" />
+			
+			<label style="width: 100%">Racun poverioca - primaoca</label>
+			<input id="racunPrimaoca" type="text" style="width: 98%;"  />
+			
+			<label style="width: 35%">Model</label>
+			<label style="width: 60%">Poziv na broj (odobrenje)</label>
+			<input id="modelOdobrenje" type="text" style="width: 25%; margin-right: 10%" />
+			<input id="pozivNaBrojOdobrenje" type="text" style="width: 62%;" />
+			
+			<label style="width: 50%; margin-right: 10%">Datum valute</label>
+			<label style="width: 30%">Datum valute</label>
+			<input id="datumValute" type="date" style="width: 50%; margin-right: 20%" />
+			<input type="checkbox" id="hitno"/>
+		</div>
+	</div>
+</body>
+</html>

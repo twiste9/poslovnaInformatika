@@ -1,4 +1,4 @@
-function preuzmi() {
+function generisi() {
 	var brojRacuna = $("#broj_racuna").val();
 	var datum = $("#datum").val();
 	
@@ -7,8 +7,8 @@ function preuzmi() {
 		type: "GET",
 		contentType: "application/json",
 		dataType: "json",
-		success: function(data){
-			success('yeey');
+		success: function(data) {
+			$('#preuzmi').css("visibility", "visible");
 		}
 	});
 }
