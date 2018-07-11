@@ -199,6 +199,46 @@ public class AnalitikaIzvoda implements Serializable {
 		this.status = status;
 	}
 
+	public int getTipGreske() {
+		return tipGreske;
+	}
+
+	public void setTipGreske(int tipGreske) {
+		this.tipGreske = tipGreske;
+	}
+
+	public DnevnoStanjeRacuna getStanjeRacuna() {
+		return stanjeRacuna;
+	}
+
+	public void setStanjeRacuna(DnevnoStanjeRacuna stanjeRacuna) {
+		this.stanjeRacuna = stanjeRacuna;
+	}
+
+	public NaseljenoMesto getNaseljenoMesto() {
+		return naseljenoMesto;
+	}
+
+	public void setNaseljenoMesto(NaseljenoMesto naseljenoMesto) {
+		this.naseljenoMesto = naseljenoMesto;
+	}
+
+	public VrstaPlacanja getVrstaPlacanja() {
+		return vrstaPlacanja;
+	}
+
+	public void setVrstaPlacanja(VrstaPlacanja vrstaPlacanja) {
+		this.vrstaPlacanja = vrstaPlacanja;
+	}
+
+	public Valuta getValuta() {
+		return valuta;
+	}
+
+	public void setValuta(Valuta valuta) {
+		this.valuta = valuta;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

@@ -35,13 +35,13 @@ insert into DNEVNO_STANJE_RACUNA values (2, '2018-07-12', 9000.00, 10000.00, 100
 insert into DNEVNO_STANJE_RACUNA values (3, '2018-07-13', 8000.00, 9000.00, 1000.00, 0.00, 1);
 insert into DNEVNO_STANJE_RACUNA values (4, '2018-07-14', 9000.00, 8000.00, 2000.00, 3000.00, 1);
 
-insert into ANALITIKA_IZVODA values (1, '2018-07-11', 'Mario Gula', false, 10000.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Dejan Besic', '213987654321032101', '123123456789012312', 1, 's', 'Uplata tako random 1', null, 1, 1, 1, 1);
-insert into ANALITIKA_IZVODA values (2, '2018-07-12', 'Dejan Besic', false, 1000.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Stefan Radanovic', '123123456789012312', '321321098765432121', 1, 's', 'Uplata na firmu 1', null, 2, 2, 1, 1);
-insert into ANALITIKA_IZVODA values (3, '2018-07-13', 'Dejan Besic', false, 500.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Stefan Radanovic', '123123456789012312', '321321098765432121', 1, 's', 'Uplata na firmu 2', null, 2, 2, 1, 1);
-insert into ANALITIKA_IZVODA values (4, '2018-07-13', 'Dejan Besic', false, 500.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Stefan Radanovic', '123123456789012312', '321321098765432121', 1, 's', 'Uplata na firmu 3', null, 2, 2, 1, 1);
-insert into ANALITIKA_IZVODA values (5, '2018-07-14', 'Dejan Besic', false, 2000.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Stefan Radanovic', '123123456789012312', '321321098765432121', 1, 's', 'Uplata na firmu 4', null, 2, 2, 1, 1);
-insert into ANALITIKA_IZVODA values (6, '2018-07-14', 'Mario Gula', false, 1500.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Dejan Besic', '213987654321032101', '123123456789012312', 1, 's', 'Uplata tako random 2', null, 1, 1, 1, 1);
-insert into ANALITIKA_IZVODA values (7, '2018-07-14', 'Mario Gula', false, 1500.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Dejan Besic', '213987654321032101', '123123456789012312', 1, 's', 'Uplata tako random 3', null, 1, 1, 1, 1);
+insert into ANALITIKA_IZVODA values (1, '2018-07-11', 'Mario Gula', false, 10000.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Dejan Besic', '213987654321032101', '123123456789012312', 1, 's', 'Uplata tako random 1', -1, 1, 1, 1, 1);
+insert into ANALITIKA_IZVODA values (2, '2018-07-12', 'Dejan Besic', false, 1000.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Stefan Radanovic', '123123456789012312', '321321098765432121', 1, 's', 'Uplata na firmu 1', -1, 2, 2, 1, 1);
+insert into ANALITIKA_IZVODA values (3, '2018-07-13', 'Dejan Besic', false, 500.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Stefan Radanovic', '123123456789012312', '321321098765432121', 1, 's', 'Uplata na firmu 2', -1, 2, 3, 1, 1);
+insert into ANALITIKA_IZVODA values (4, '2018-07-13', 'Dejan Besic', false, 500.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Stefan Radanovic', '123123456789012312', '321321098765432121', 1, 's', 'Uplata na firmu 3', -1, 2, 3, 1, 1);
+insert into ANALITIKA_IZVODA values (5, '2018-07-14', 'Dejan Besic', false, 2000.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Stefan Radanovic', '123123456789012312', '321321098765432121', 1, 's', 'Uplata na firmu 4', -1, 2, 4, 1, 1);
+insert into ANALITIKA_IZVODA values (6, '2018-07-14', 'Mario Gula', false, 1500.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Dejan Besic', '213987654321032101', '123123456789012312', 1, 's', 'Uplata tako random 2', -1, 1, 4, 1, 1);
+insert into ANALITIKA_IZVODA values (7, '2018-07-14', 'Mario Gula', false, 1500.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Dejan Besic', '213987654321032101', '123123456789012312', 1, 's', 'Uplata tako random 3', -1, 1, 4, 1, 1);
 
 --insert into ANALITIKA_IZVODA values (1, '2018-07-11', 'Mario Gula', false, 10000.00, 97, 97, 'poz na br odob', 'poz na br zad', 'Dejan Besic', '213987654321032101', '123123456789012312', 1, 's', 'Uplata tako random', 1, 1, 1, 1);
 
