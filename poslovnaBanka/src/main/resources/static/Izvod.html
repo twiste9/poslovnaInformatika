@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/scripts/izvod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<script src="/stylesheets/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Izvod</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-2">
+			<form action="#" >
+				<input type="text" id="broj_racuna" style="margin-bottom: 10px; margin-top: 20px;" class="form-control" />
+				<br />
+				<input type="date" id="datum" style="margin-bottom: 10px" class="form-control"/>
+				<br />
+				<input type="number" max="99" min="1" style="margin-bottom: 10px" class="form-control" id="redni_broj_preseka" />
+				<input type="submit" value="Preuzmi" class="btn-primary" onclick="preuzmi()"/>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

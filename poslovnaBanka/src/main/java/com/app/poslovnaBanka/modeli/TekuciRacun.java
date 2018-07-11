@@ -30,9 +30,14 @@ public class TekuciRacun implements Serializable {
 
 	@ManyToOne(optional = false)
 	protected Klijent klijent;
+	
+	@ManyToOne(optional = false)
+	protected Banka banka;
+	
+	@ManyToOne(optional = false)
+	protected Valuta valuta;
 
 	public TekuciRacun() {
-
 	}
 
 	public Long getId() {

@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-public class PojedinacnoPlacanje implements Serializable {
+@Entity
+public class AnalitikaIzvoda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-
-	@Column(nullable = false)
-	protected String idNalogaZaPlacanje;
 
 	@Column(nullable = false)
 	protected String duznikNalogodavac;
@@ -53,14 +53,32 @@ public class PojedinacnoPlacanje implements Serializable {
 
 	@Column(nullable = false)
 	protected String sifraValute;
-	
+
 	@Column(nullable = false)
 	protected boolean hitno;
 
-	public PojedinacnoPlacanje() {
+	@Column(nullable = true)
+	protected char status;
+
+	@Column(nullable = true, length = 1)
+	protected int tipGreske;
+	
+	@ManyToOne(optional = false)
+	private DnevnoStanjeRacuna stanjeRacuna;
+
+	@ManyToOne(optional = true)
+	private NaseljenoMesto naseljenoMesto;
+
+	@ManyToOne(optional = true)
+	private VrstaPlacanja vrstaPlacanja;
+
+	@ManyToOne(optional = true)
+	private Valuta valuta;
+
+	public AnalitikaIzvoda() {
 
 	}
-	
+
 	public boolean isHitno() {
 		return hitno;
 	}
@@ -75,14 +93,6 @@ public class PojedinacnoPlacanje implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getIdNalogaZaPlacanje() {
-		return idNalogaZaPlacanje;
-	}
-
-	public void setIdNalogaZaPlacanje(String idNalogaZaPlacanje) {
-		this.idNalogaZaPlacanje = idNalogaZaPlacanje;
 	}
 
 	public String getDuznikNalogodavac() {
@@ -179,6 +189,14 @@ public class PojedinacnoPlacanje implements Serializable {
 
 	public void setSifraValute(String sifraValute) {
 		this.sifraValute = sifraValute;
+	}
+
+	public char getStatus() {
+		return status;
+	}
+
+	public void setStatus(char status) {
+		this.status = status;
 	}
 
 	public static long getSerialversionuid() {
