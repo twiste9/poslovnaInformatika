@@ -11,16 +11,18 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Valuta implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
 	protected String naziv;
 
-	@Column(nullable = false)
+	
+	@Column(nullable = false, columnDefinition = "CHAR(3)")
 	protected String sifra;
 
 	@Column(nullable = false)

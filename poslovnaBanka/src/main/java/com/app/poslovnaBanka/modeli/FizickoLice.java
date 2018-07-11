@@ -14,6 +14,9 @@ public class FizickoLice extends Klijent {
 
 	@Column(nullable = false)
 	protected String jmbg;
+	
+	@Column(unique = true, nullable = false)
+	private String brojLicneKarte;
 
 	public FizickoLice() {
 		super();
@@ -43,4 +46,12 @@ public class FizickoLice extends Klijent {
 		this.jmbg = jmbg;
 	}
 
+	public String getBrojLicneKarte() {
+		return brojLicneKarte;
+	}
+
+	public void setBrojLicneKarte(String brojLicneKarte) {
+		this.brojLicneKarte = brojLicneKarte;
+	}
+	
 }

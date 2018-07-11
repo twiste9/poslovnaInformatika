@@ -9,10 +9,10 @@ public class PravnoLice extends Klijent {
 	@Column(nullable = false)
 	protected String naziv;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 9)
 	protected String pib;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 8)
 	protected String maticniBroj;
 
 	public PravnoLice() {

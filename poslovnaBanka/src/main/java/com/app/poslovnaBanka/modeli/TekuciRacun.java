@@ -19,7 +19,7 @@ public class TekuciRacun implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 18)
 	protected String brojRacuna;
 
 	@Column(nullable = false)
@@ -28,14 +28,8 @@ public class TekuciRacun implements Serializable {
 	@Column(nullable = false)
 	protected Date datumOtvaranja;
 
-	@ManyToOne(optional = true)
-	protected PravnoLice pravnoLice;
-
-	@ManyToOne(optional = true)
-	protected FizickoLice fizickoLice;
-
-	@Column(nullable = false)
-	protected String tipLica;
+	@ManyToOne(optional = false)
+	protected Klijent klijent;
 
 	public TekuciRacun() {
 
@@ -72,31 +66,7 @@ public class TekuciRacun implements Serializable {
 	public void setDatumOtvaranja(Date datumOtvaranja) {
 		this.datumOtvaranja = datumOtvaranja;
 	}
-
-	public PravnoLice getPravnoLice() {
-		return pravnoLice;
-	}
-
-	public void setPravnoLice(PravnoLice pravnoLice) {
-		this.pravnoLice = pravnoLice;
-	}
-
-	public FizickoLice getFizickoLice() {
-		return fizickoLice;
-	}
-
-	public void setFizickoLice(FizickoLice fizickoLice) {
-		this.fizickoLice = fizickoLice;
-	}
-
-	public String getTipLica() {
-		return tipLica;
-	}
-
-	public void setTipLica(String tipLica) {
-		this.tipLica = tipLica;
-	}
-
+		
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

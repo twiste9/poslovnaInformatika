@@ -22,16 +22,16 @@ public class DnevnoStanjeRacuna implements Serializable {
 	@Column(nullable = false)
 	protected Date datumPrometa;
 
-	@Column(nullable = false)
+	@Column(nullable = false, scale = 2)
 	protected double prethodnoStanje;
 
-	@Column(nullable = false)
+	@Column(nullable = false, scale = 2)
 	protected double prometUKorist;
 
-	@Column(nullable = false)
+	@Column(nullable = false, scale = 2)
 	protected double prometNaTeret;
 
-	@Column(nullable = false)
+	@Column(nullable = false, scale = 2)
 	protected double novoStanje;
 
 	@ManyToOne(optional = true)

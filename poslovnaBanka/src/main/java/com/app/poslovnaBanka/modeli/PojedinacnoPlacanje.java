@@ -53,9 +53,20 @@ public class PojedinacnoPlacanje implements Serializable {
 
 	@Column(nullable = false)
 	protected String sifraValute;
+	
+	@Column(nullable = false)
+	protected boolean hitno;
 
 	public PojedinacnoPlacanje() {
 
+	}
+	
+	public boolean isHitno() {
+		return hitno;
+	}
+
+	public void setHitno(boolean hitno) {
+		this.hitno = hitno;
 	}
 
 	public Long getId() {

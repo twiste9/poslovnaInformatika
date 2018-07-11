@@ -22,7 +22,7 @@ public class Ukidanje implements Serializable {
 	@Column(nullable = false)
 	protected Date datumUkidanja;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	protected String prenosNaRacun;
 
 	@OneToOne(optional = true)
