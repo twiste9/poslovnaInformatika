@@ -131,7 +131,7 @@ public class IzvodServiceImpl implements IzvodService {
 		Document doc = new Document(izvod);
 		
 		try {
-			PrintWriter out = new PrintWriter("src/main/resources/static/Izvod.xml");
+			PrintWriter out = new PrintWriter("src/main/resources/static/xml/Izvod.xml");
 			xmlOutput.output(doc, out);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();

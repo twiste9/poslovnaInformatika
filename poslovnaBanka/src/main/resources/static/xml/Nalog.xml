@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nalog>
+  <nalogodavac />
+  <svrha_placanja>asd</svrha_placanja>
+  <primalac />
+  <mesto_prijema />
+  <datum_prijema />
+  <sifra_placanja />
+  <valuta />
+  <iznos>0.0</iznos>
+  <racun_duznika />
+  <model_zaduzenja />
+  <poziv_na_broj_zaduzenja />
+  <racun_primaoca />
+  <model_odobrenja />
+  <poziv_na_broj_odobrenja />
+  <datum_valute />
+  <hitno>DA</hitno>
+</nalog>
