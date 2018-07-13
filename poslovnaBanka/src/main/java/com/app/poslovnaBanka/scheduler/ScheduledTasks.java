@@ -2,6 +2,7 @@ package com.app.poslovnaBanka.scheduler;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -49,67 +50,82 @@ public class ScheduledTasks {
 		if(noviNalozi.isEmpty()) {
 			return;
 		}
-		NalogZaPrenos n = noviNalozi.get(0);
 		
-		TekuciRacun trNalogodavca =  trRepository.findByBrojRacuna(n.getRacunNalogodavca());
-		TekuciRacun trPrimaoca =  trRepository.findByBrojRacuna(n.getRacunPrimaoca());
-		TekuciRacun trBankePrimaoca =  trRepository.findByBankaAndKlijentIsNull(trPrimaoca.getBanka());
-		TekuciRacun trBankeNalogodavca =  trRepository.findByBankaAndKlijentIsNull(trNalogodavca.getBanka());
-		
-		MT102 mt102 = new MT102(trNalogodavca.getBanka().getSwiftCode(),trPrimaoca.getBanka().getSwiftCode(),
-								trBankePrimaoca.getBrojRacuna(),trBankeNalogodavca.getBrojRacuna(),
-								0.0,n.getValuta().getSifra(),new Date(),new Date());
-		
+		HashMap<Banka,ArrayList<NalogZaPrenos>> mapa = new HashMap<Banka,ArrayList<NalogZaPrenos>>(); 
 		for(NalogZaPrenos na : noviNalozi) {
-			mt102.setUkupanIznos(mt102.getUkupanIznos()+na.getIznos());
+			TekuciRacun t =  trRepository.findByBrojRacuna(na.getRacunPrimaoca());
+			if(!mapa.containsKey(t.getBanka())) {
+				mapa.put(t.getBanka(), new ArrayList<NalogZaPrenos>());
+			}
+			mapa.get(t.getBanka()).add(na);
 		}
-		mt102 = mt102Repo.save(mt102);
 		
-		Banka bankaNal = trNalogodavca.getBanka();
-		Banka bankaPri = trPrimaoca.getBanka();
-		//skinuti pare sa banke..
-		ArrayList<DnevnoStanjeRacuna> dsbankaNal = dsrRepository.findByTekuciRacunOrderByDatumPrometaDesc(trBankeNalogodavca);
-		DnevnoStanjeRacuna poslednjestanjeBankeNal =dsbankaNal.get(0);
-		
-		ArrayList<DnevnoStanjeRacuna> dsbankaPri = dsrRepository.findByTekuciRacunOrderByDatumPrometaDesc(trBankePrimaoca);
-		DnevnoStanjeRacuna poslednjestanjeBankePri =dsbankaPri.get(0);
-		
-		//prebacivanje sa jedne banke na drugu
-		DnevnoStanjeRacuna novoNal = new DnevnoStanjeRacuna(new Date(), poslednjestanjeBankeNal.getNovoStanje(),0.0,mt102.getUkupanIznos(),poslednjestanjeBankeNal.getNovoStanje()-mt102.getUkupanIznos(),trBankeNalogodavca);
-		DnevnoStanjeRacuna novoPri = new DnevnoStanjeRacuna(new Date(), poslednjestanjeBankePri.getNovoStanje(),mt102.getUkupanIznos(),0.0,poslednjestanjeBankePri.getNovoStanje()+mt102.getUkupanIznos(),trBankePrimaoca);
-		
-		dsrRepository.save(novoNal);
-		dsrRepository.save(novoPri);
-		
-		Poruka poruka = new Poruka("MT900",bankaNal.getSwiftCode(),trBankeNalogodavca.getBrojRacuna(),mt102.getId(),new Date(),mt102.getUkupanIznos(),mt102.getSifraValute());
-		porukaRepo.save(poruka);
-		Poruka poruka2 = new Poruka("MT910",bankaPri.getSwiftCode(),trBankePrimaoca.getBrojRacuna(),mt102.getId(),new Date(),mt102.getUkupanIznos(),mt102.getSifraValute());
-		porukaRepo.save(poruka2);
-		
-		for(NalogZaPrenos na : noviNalozi) {
-			na.setMt102ID(mt102.getId());
-			nzpRepo.save(na);
+		for(Banka b : mapa.keySet()) {
+			NalogZaPrenos n = mapa.get(b).get(0);
 			
-			trNalogodavca =  trRepository.findByBrojRacuna(na.getRacunNalogodavca());
-			trPrimaoca =  trRepository.findByBrojRacuna(na.getRacunPrimaoca());
-			ArrayList<DnevnoStanjeRacuna> dsNala = dsrRepository.findByTekuciRacunOrderByDatumPrometaDesc(trNalogodavca);
-			DnevnoStanjeRacuna dsNal =dsNala.get(0);
-			DnevnoStanjeRacuna dsP = dsrRepository.findByTekuciRacunOrderByDatumPrometaDesc(trPrimaoca).get(0);
+			TekuciRacun trNalogodavca =  trRepository.findByBrojRacuna(n.getRacunNalogodavca());
+			TekuciRacun trPrimaoca =  trRepository.findByBrojRacuna(n.getRacunPrimaoca());
+			TekuciRacun trBankePrimaoca =  trRepository.findByBankaAndKlijentIsNull(trPrimaoca.getBanka());
+			TekuciRacun trBankeNalogodavca =  trRepository.findByBankaAndKlijentIsNull(trNalogodavca.getBanka());
 			
-			//skidanje para sa racuna nalogodavca i prebacivanje na racun banke
+			MT102 mt102 = new MT102(trNalogodavca.getBanka().getSwiftCode(),trPrimaoca.getBanka().getSwiftCode(),
+									trBankePrimaoca.getBrojRacuna(),trBankeNalogodavca.getBrojRacuna(),
+									0.0,n.getValuta().getSifra(),new Date(),new Date());
 			
-			DnevnoStanjeRacuna novoNal1 = new DnevnoStanjeRacuna(new Date(), dsNal.getNovoStanje(),0.0,na.getIznos(),dsNal.getNovoStanje()-na.getIznos(),trNalogodavca);
-			DnevnoStanjeRacuna novoBankeNal = new DnevnoStanjeRacuna(new Date(), novoNal.getNovoStanje(),na.getIznos(),0.0,novoNal.getNovoStanje()+na.getIznos(),trBankeNalogodavca);
-			dsrRepository.save(novoNal1);
-			dsrRepository.save(novoBankeNal);
+			for(NalogZaPrenos na : mapa.get(b)) {
+				mt102.setUkupanIznos(mt102.getUkupanIznos()+na.getIznos());
+			}
+			mt102 = mt102Repo.save(mt102);
 			
-			//prebacivanje sa banke primaoca na racun primaoca
+			Banka bankaNal = trNalogodavca.getBanka();
+			Banka bankaPri = trPrimaoca.getBanka();
+			//skinuti pare sa banke..
+			ArrayList<DnevnoStanjeRacuna> dsbankaNal = dsrRepository.findByTekuciRacunOrderByDatumPrometaDesc(trBankeNalogodavca);
+			DnevnoStanjeRacuna poslednjestanjeBankeNal =dsbankaNal.get(0);
 			
+			ArrayList<DnevnoStanjeRacuna> dsbankaPri = dsrRepository.findByTekuciRacunOrderByDatumPrometaDesc(trBankePrimaoca);
+			DnevnoStanjeRacuna poslednjestanjeBankePri =dsbankaPri.get(0);
 			
-			DnevnoStanjeRacuna novoPrim = new DnevnoStanjeRacuna(new Date(), dsP.getNovoStanje(),na.getIznos(),0.0,dsP.getNovoStanje()+na.getIznos(),trPrimaoca);
-			DnevnoStanjeRacuna novoBankePrim = new DnevnoStanjeRacuna(new Date(), novoPri.getNovoStanje(),0.0,na.getIznos(),novoPri.getNovoStanje()-na.getIznos(),trBankePrimaoca);
-			dsrRepository.save(novoPrim);
-			dsrRepository.save(novoBankePrim);
+			//prebacivanje sa jedne banke na drugu
+			DnevnoStanjeRacuna novoNal = new DnevnoStanjeRacuna(new Date(), poslednjestanjeBankeNal.getNovoStanje(),0.0,mt102.getUkupanIznos(),poslednjestanjeBankeNal.getNovoStanje()-mt102.getUkupanIznos(),trBankeNalogodavca);
+			DnevnoStanjeRacuna novoPri = new DnevnoStanjeRacuna(new Date(), poslednjestanjeBankePri.getNovoStanje(),mt102.getUkupanIznos(),0.0,poslednjestanjeBankePri.getNovoStanje()+mt102.getUkupanIznos(),trBankePrimaoca);
+			
+			dsrRepository.save(novoNal);
+			dsrRepository.save(novoPri);
+			
+			Poruka poruka = new Poruka("MT900",bankaNal.getSwiftCode(),trBankeNalogodavca.getBrojRacuna(),mt102.getId(),new Date(),mt102.getUkupanIznos(),mt102.getSifraValute());
+			porukaRepo.save(poruka);
+			Poruka poruka2 = new Poruka("MT910",bankaPri.getSwiftCode(),trBankePrimaoca.getBrojRacuna(),mt102.getId(),new Date(),mt102.getUkupanIznos(),mt102.getSifraValute());
+			porukaRepo.save(poruka2);
+			for(NalogZaPrenos na : mapa.get(b)) {
+				
+				na.setMt102ID(mt102.getId());
+				nzpRepo.save(na);
+				
+				trNalogodavca =  trRepository.findByBrojRacuna(na.getRacunNalogodavca());
+				trPrimaoca =  trRepository.findByBrojRacuna(na.getRacunPrimaoca());
+				ArrayList<DnevnoStanjeRacuna> dsNala = dsrRepository.findByTekuciRacunOrderByDatumPrometaDesc(trNalogodavca);
+				DnevnoStanjeRacuna dsNal =dsNala.get(0);
+				DnevnoStanjeRacuna dsP = dsrRepository.findByTekuciRacunOrderByDatumPrometaDesc(trPrimaoca).get(0);
+				
+				//skidanje para sa racuna nalogodavca i prebacivanje na racun banke
+				
+				DnevnoStanjeRacuna novoNal1 = new DnevnoStanjeRacuna(new Date(), dsNal.getNovoStanje(),0.0,na.getIznos(),dsNal.getNovoStanje()-na.getIznos(),trNalogodavca);
+				DnevnoStanjeRacuna novoBankeNal = new DnevnoStanjeRacuna(new Date(), novoNal.getNovoStanje(),na.getIznos(),0.0,novoNal.getNovoStanje()+na.getIznos(),trBankeNalogodavca);
+				dsrRepository.save(novoNal1);
+				dsrRepository.save(novoBankeNal);
+				
+				//prebacivanje sa banke primaoca na racun primaoca
+				
+				
+				DnevnoStanjeRacuna novoPrim = new DnevnoStanjeRacuna(new Date(), dsP.getNovoStanje(),na.getIznos(),0.0,dsP.getNovoStanje()+na.getIznos(),trPrimaoca);
+				DnevnoStanjeRacuna novoBankePrim = new DnevnoStanjeRacuna(new Date(), novoPri.getNovoStanje(),0.0,na.getIznos(),novoPri.getNovoStanje()-na.getIznos(),trBankePrimaoca);
+				dsrRepository.save(novoPrim);
+				dsrRepository.save(novoBankePrim);
+			}
+			
 		}
+		
+		
 	}
 }
