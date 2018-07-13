@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Poruka implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,16 +21,13 @@ public class Poruka implements Serializable {
 	protected String tipPoruke; // MT900 ili MT910
 
 	@Column(nullable = false)
-	protected String idPoruke;
-
-	@Column(nullable = false)
 	protected String swiftKodBanke;
 
 	@Column(nullable = false)
 	protected String racunBanke;
 
 	@Column(nullable = false)
-	protected String idPorukeNaloga; // MT102 ili MT103
+	protected Long idPorukeNaloga; // MT102 ili MT103
 
 	@Column(nullable = false)
 	protected Date datumValute;
@@ -41,6 +40,18 @@ public class Poruka implements Serializable {
 
 	public Poruka() {
 
+	}
+
+	public Poruka(String tipPoruke, String swiftKodBanke, String racunBanke, Long idPorukeNaloga,
+			Date datumValute, double iznos, String sifraValute) {
+		super();
+		this.tipPoruke = tipPoruke;
+		this.swiftKodBanke = swiftKodBanke;
+		this.racunBanke = racunBanke;
+		this.idPorukeNaloga = idPorukeNaloga;
+		this.datumValute = datumValute;
+		this.iznos = iznos;
+		this.sifraValute = sifraValute;
 	}
 
 	public Long getId() {
@@ -59,13 +70,6 @@ public class Poruka implements Serializable {
 		this.tipPoruke = tipPoruke;
 	}
 
-	public String getIdPoruke() {
-		return idPoruke;
-	}
-
-	public void setIdPoruke(String idPoruke) {
-		this.idPoruke = idPoruke;
-	}
 
 	public String getSwiftKodBanke() {
 		return swiftKodBanke;
@@ -83,11 +87,11 @@ public class Poruka implements Serializable {
 		this.racunBanke = racunBanke;
 	}
 
-	public String getIdPorukeNaloga() {
+	public Long getIdPorukeNaloga() {
 		return idPorukeNaloga;
 	}
 
-	public void setIdPorukeNaloga(String idPorukeNaloga) {
+	public void setIdPorukeNaloga(Long idPorukeNaloga) {
 		this.idPorukeNaloga = idPorukeNaloga;
 	}
 

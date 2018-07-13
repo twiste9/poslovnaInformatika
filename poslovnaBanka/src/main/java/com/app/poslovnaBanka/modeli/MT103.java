@@ -18,9 +18,6 @@ public class MT103 implements Serializable {
 	protected Long id;
 
 	@Column(nullable = false)
-	protected String idPoruke;
-
-	@Column(nullable = false)
 	protected String swiftDuznik;
 
 	@Column(nullable = false)
@@ -74,6 +71,51 @@ public class MT103 implements Serializable {
 	public MT103() {
 
 	}
+	
+	public MT103(TekuciRacun trPrimaoca, TekuciRacun trNalogodavca, NalogZaPrenos nzp, String bankaPrim,String bakaNal) {
+		super();
+		this.swiftDuznik = trNalogodavca.getBanka().getSwiftCode();
+		this.swiftPoverioc = trPrimaoca.getBanka().getSwiftCode();
+		this.obracunskiPoverioca = bankaPrim;
+		this.obracunskiDuznika = bakaNal;
+		this.duznikNalogodavac = nzp.getNalogodavac();
+		this.svrhaPlacanja = nzp.getSvrhaPlacanja();
+		this.primalacPoverilac = nzp.getPrimalac();
+		this.datumNaloga = new Date();
+		this.datumValute = new Date();
+		this.racunDuznika = trNalogodavca.getBrojRacuna();
+		this.modelZaduzenja = nzp.getModelNalogodavca();
+		this.pozivNaBrojZaduzenja = nzp.getPozivNaBrojNalogodavca();
+		this.racunPoverioca = trPrimaoca.getBrojRacuna();
+		this.modelOdobrenja = nzp.getModelPrimaoca();
+		this.pozivNaBrojOdobrenja = nzp.getPozivNaBrojPrimaoca();
+		this.iznos = nzp.getIznos();
+		this.sifraValute = nzp.getValutaSifra();
+	}
+
+	public MT103(String swiftDuznik, String swiftPoverioc, String obracunskiPoverioca, String obracunskiDuznika,
+			String duznikNalogodavac, String svrhaPlacanja, String primalacPoverilac, Date datumNaloga,
+			Date datumValute, String racunDuznika, int modelZaduzenja, String pozivNaBrojZaduzenja,
+			String racunPoverioca, int modelOdobrenja, String pozivNaBrojOdobrenja, double iznos, String sifraValute) {
+		super();
+		this.swiftDuznik = swiftDuznik;
+		this.swiftPoverioc = swiftPoverioc;
+		this.obracunskiPoverioca = obracunskiPoverioca;
+		this.obracunskiDuznika = obracunskiDuznika;
+		this.duznikNalogodavac = duznikNalogodavac;
+		this.svrhaPlacanja = svrhaPlacanja;
+		this.primalacPoverilac = primalacPoverilac;
+		this.datumNaloga = datumNaloga;
+		this.datumValute = datumValute;
+		this.racunDuznika = racunDuznika;
+		this.modelZaduzenja = modelZaduzenja;
+		this.pozivNaBrojZaduzenja = pozivNaBrojZaduzenja;
+		this.racunPoverioca = racunPoverioca;
+		this.modelOdobrenja = modelOdobrenja;
+		this.pozivNaBrojOdobrenja = pozivNaBrojOdobrenja;
+		this.iznos = iznos;
+		this.sifraValute = sifraValute;
+	}
 
 	public Long getId() {
 		return id;
@@ -83,13 +125,7 @@ public class MT103 implements Serializable {
 		this.id = id;
 	}
 
-	public String getIdPoruke() {
-		return idPoruke;
-	}
 
-	public void setIdPoruke(String idPoruke) {
-		this.idPoruke = idPoruke;
-	}
 
 	public String getSwiftDuznik() {
 		return swiftDuznik;

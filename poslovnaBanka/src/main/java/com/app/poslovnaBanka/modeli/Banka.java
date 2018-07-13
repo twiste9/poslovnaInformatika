@@ -28,6 +28,14 @@ public class Banka implements Serializable {
 	@Column(nullable = false)
 	protected String adresa;
 
+	public String getSwiftCode() {
+		return swiftCode;
+	}
+
+	public void setSwiftCode(String swiftCode) {
+		this.swiftCode = swiftCode;
+	}
+
 	@Column(nullable = false)
 	protected String email;
 
@@ -42,6 +50,9 @@ public class Banka implements Serializable {
 
 	@Column(nullable = false)
 	protected boolean centralna;
+	
+	@Column(nullable = false)
+	protected String swiftCode;
 
 	public Banka() {
 

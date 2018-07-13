@@ -10,7 +10,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Klijent {
+public class Klijent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +24,17 @@ public abstract class Klijent {
 
 	@Column(nullable = false)
 	protected String adresa;
+	
+	@Column(nullable = false)
+	protected String password;
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public Klijent() {
 	}

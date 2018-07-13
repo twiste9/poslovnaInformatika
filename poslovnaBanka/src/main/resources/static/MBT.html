@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="/scripts/jquery-3.2.1.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+<script src="/stylesheets/bootstrap.min.js"></script>
+
+<meta charset="UTF-8">
+</head>
+<body>
+	<div style="padding-left: 15px; padding-right: 15px;"> 
+	<div class="row" style="text-align: center">
+		<h1 id="header"></h1>		
+	</div>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+			<form id="newForm">
+				<span>
+					Duznik - nalogodavac:
+					<input id="nalogodavac" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					Svrha Placanja:
+					<input id="svrha" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					Poverilac - primalac:
+					<input id="primalac" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<hr>
+				<span>
+					Šifra plaćanja:
+					<input id="sifraPl" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					Valuta:
+					<input id="valuta" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					Iznos:
+					<input id="iznos" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<hr>
+				<span>
+					Račun dužnika (nalogodavca):
+					<input id="racunNal" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					ModelNal:
+					<input id="modelNal" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					Poziv na broj:
+					<input id="pozivNaBrNal" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<hr>
+				<span>
+					Račun poverioca (primaoca):
+					<input id="racunPrim" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					ModelNal:
+					<input id="modelPrim" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					Poziv na broj:
+					<input id="pozivNaBrPrim" type="text" class="form-control" name="UsernameOrEmail"/>
+				</span>
+				<span>
+					<input type="checkbox" id="hitno" value="Hitno"> Hitno<br>
+				</span>
+				<b id="error" style="color:red; visibility: collapse">Loši parametri.</b>
+				<div style=" padding-top: 10px; text-align: right;">
+				    <button type="button" style="margin-right: 10px;" onClick="transfer()">Prebaci</button>
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
+	 
+	<script src="/scripts/mbt.js"></script>
+</body>
+</html>

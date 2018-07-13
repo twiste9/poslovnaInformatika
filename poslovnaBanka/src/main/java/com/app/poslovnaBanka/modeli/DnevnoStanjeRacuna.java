@@ -45,6 +45,17 @@ public class DnevnoStanjeRacuna implements Serializable {
 		return id;
 	}
 
+	public DnevnoStanjeRacuna(Date datumPrometa, double prethodnoStanje, double prometUKorist, double prometNaTeret,
+			double novoStanje, TekuciRacun tekuciRacun) {
+		super();
+		this.datumPrometa = datumPrometa;
+		this.prethodnoStanje = prethodnoStanje;
+		this.prometUKorist = prometUKorist;
+		this.prometNaTeret = prometNaTeret;
+		this.novoStanje = novoStanje;
+		this.tekuciRacun = tekuciRacun;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}

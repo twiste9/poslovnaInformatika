@@ -18,9 +18,6 @@ public class MT102 implements Serializable {
 	protected Long id;
 
 	@Column(nullable = false)
-	protected String idPoruke;
-
-	@Column(nullable = false)
 	protected String swiftDuznik;
 
 	@Column(nullable = false)
@@ -51,20 +48,25 @@ public class MT102 implements Serializable {
 
 	}
 
+	public MT102(String swiftDuznik, String swiftPoverioc, String obracunskiPoverioca, String obracunskiDuznika,
+			double ukupanIznos, String sifraValute, Date datumValute, Date datum) {
+		super();
+		this.swiftDuznik = swiftDuznik;
+		this.swiftPoverioc = swiftPoverioc;
+		this.obracunskiPoverioca = obracunskiPoverioca;
+		this.obracunskiDuznika = obracunskiDuznika;
+		this.ukupanIznos = ukupanIznos;
+		this.sifraValute = sifraValute;
+		this.datumValute = datumValute;
+		this.datum = datum;
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getIdPoruke() {
-		return idPoruke;
-	}
-
-	public void setIdPoruke(String idPoruke) {
-		this.idPoruke = idPoruke;
 	}
 
 	public String getSwiftDuznik() {
