@@ -44,8 +44,8 @@ public class Ukidanje implements Serializable {
 		return datumUkidanja;
 	}
 
-	public void setDatumUkidanja(Date datumUkidanja) {
-		this.datumUkidanja = datumUkidanja;
+	public void setDatumUkidanja() {
+		this.datumUkidanja = new Date();
 	}
 
 	public String getPrenosNaRacun() {

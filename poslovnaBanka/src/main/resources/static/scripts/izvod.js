@@ -12,3 +12,19 @@ function generisi() {
 		}
 	});
 }
+
+function generisiPDF(){
+	var brojRacuna = $("#broj_racuna").val();
+	var datum = $("#datum").val();
+	
+	$.ajax({
+		url: "../izvod/preuzmiPDF?brojRacuna=" +brojRacuna + "&datum=" + datum,
+		type: "GET",
+		contentType: "application/json",
+		dataType: "json",
+		success: function(data) {
+			alert("Izvod uspesno preuzet");
+			//$('#preuzmi').css("visibility", "visible");
+		}
+	});
+}

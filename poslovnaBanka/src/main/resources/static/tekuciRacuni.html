@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/scripts/tekuciRacuni.js"></script>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<script src="/stylesheets/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Tekuci Racuni</title>
+</head>
+<body>
+<div style="padding-left: 15px; padding-right: 15px;">
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-2">
+			<h3>Tekuci Racuni</h3>
+			<label>Naziv banke</label> <br />
+			<input type="text" id="nazivBanke" style="margin-bottom: 10px; margin-top: 20px;" class="form-control" />
+			<br />
+			<button class="btn-primary" onclick="generisiPDF()">Preuzmi PDF</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-2">
+			<h3>Ukidanje racuna</h3>
+			<label>Broj tekuceg racuna</label> <br />
+			<input type="text" id="brTekuceg" style="margin-bottom: 10px; margin-top: 20px;" class="form-control" />
+			<br />
+			<label>Prenesi sredstva na racun:</label> <br />
+			<input type="text" id="prenos" style="margin-bottom: 10px" class="form-control"/>
+			<br />
+			<button class="btn-primary" onclick="ukini()">Ukini</button>
+		</div>
+	</div>
+</div>
+</body>
+</html>
