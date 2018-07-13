@@ -22,7 +22,7 @@ function generisiPDF(){
 		type: "GET",
 		contentType: "application/json",
 		dataType: "json",
-		success: function(data) {
+		success: function() {
 			alert("Izvod uspesno preuzet");
 			//$('#preuzmi').css("visibility", "visible");
 		}

@@ -59,8 +59,8 @@ public class RacunKontroler {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/exportuj", method = RequestMethod.POST)
-	public ResponseEntity<?> exportNaloga(@RequestBody UkidanjeDTO dto){
+	@RequestMapping(value="/ukini", method = RequestMethod.POST)
+	public ResponseEntity<?> ukiniTR(@RequestBody UkidanjeDTO dto){
 		
 		TekuciRacun zaUkinuti = tekuciRacunService.findByBrojRacuna(dto.getUkini());
 		TekuciRacun zaPrebaciti = tekuciRacunService.findByBrojRacuna(dto.getPrenesi());
