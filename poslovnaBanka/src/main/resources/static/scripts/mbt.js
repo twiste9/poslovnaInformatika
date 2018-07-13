@@ -44,6 +44,7 @@ function transfer(){
 			if(xhr.status == 200){
 				clear();
 				$('#preuzmi').css("visibility", "visible");
+				$("#error").css("visibility", "hidden");
 					
 			}
 			else{

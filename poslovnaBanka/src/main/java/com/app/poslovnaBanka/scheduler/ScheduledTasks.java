@@ -51,16 +51,16 @@ public class ScheduledTasks {
 			return;
 		}
 		
-		HashMap<Banka,ArrayList<NalogZaPrenos>> mapa = new HashMap<Banka,ArrayList<NalogZaPrenos>>(); 
+		HashMap<Long,ArrayList<NalogZaPrenos>> mapa = new HashMap<Long,ArrayList<NalogZaPrenos>>(); 
 		for(NalogZaPrenos na : noviNalozi) {
 			TekuciRacun t =  trRepository.findByBrojRacuna(na.getRacunPrimaoca());
-			if(!mapa.containsKey(t.getBanka())) {
-				mapa.put(t.getBanka(), new ArrayList<NalogZaPrenos>());
+			if(!mapa.containsKey(t.getBanka().getId())) {
+				mapa.put(t.getBanka().getId(), new ArrayList<NalogZaPrenos>());
 			}
-			mapa.get(t.getBanka()).add(na);
+			mapa.get(t.getBanka().getId()).add(na);
 		}
 		
-		for(Banka b : mapa.keySet()) {
+		for(Long b : mapa.keySet()) {
 			NalogZaPrenos n = mapa.get(b).get(0);
 			
 			TekuciRacun trNalogodavca =  trRepository.findByBrojRacuna(n.getRacunNalogodavca());
@@ -111,17 +111,17 @@ public class ScheduledTasks {
 				//skidanje para sa racuna nalogodavca i prebacivanje na racun banke
 				
 				DnevnoStanjeRacuna novoNal1 = new DnevnoStanjeRacuna(new Date(), dsNal.getNovoStanje(),0.0,na.getIznos(),dsNal.getNovoStanje()-na.getIznos(),trNalogodavca);
-				DnevnoStanjeRacuna novoBankeNal = new DnevnoStanjeRacuna(new Date(), novoNal.getNovoStanje(),na.getIznos(),0.0,novoNal.getNovoStanje()+na.getIznos(),trBankeNalogodavca);
+				novoNal = new DnevnoStanjeRacuna(new Date(), novoNal.getNovoStanje(),na.getIznos(),0.0,novoNal.getNovoStanje()+na.getIznos(),trBankeNalogodavca);
 				dsrRepository.save(novoNal1);
-				dsrRepository.save(novoBankeNal);
+				dsrRepository.save(novoNal);
 				
 				//prebacivanje sa banke primaoca na racun primaoca
 				
 				
 				DnevnoStanjeRacuna novoPrim = new DnevnoStanjeRacuna(new Date(), dsP.getNovoStanje(),na.getIznos(),0.0,dsP.getNovoStanje()+na.getIznos(),trPrimaoca);
-				DnevnoStanjeRacuna novoBankePrim = new DnevnoStanjeRacuna(new Date(), novoPri.getNovoStanje(),0.0,na.getIznos(),novoPri.getNovoStanje()-na.getIznos(),trBankePrimaoca);
+				novoPri = new DnevnoStanjeRacuna(new Date(), novoPri.getNovoStanje(),0.0,na.getIznos(),novoPri.getNovoStanje()-na.getIznos(),trBankePrimaoca);
 				dsrRepository.save(novoPrim);
-				dsrRepository.save(novoBankePrim);
+				dsrRepository.save(novoPri);
 			}
 			
 		}
