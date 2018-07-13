@@ -42,7 +42,9 @@ function transfer(){
         },
 		error: function(xhr, ajaxOptions, thrownError){
 			if(xhr.status == 200){
-				window.location.href = "../MBT.html";	
+				clear();
+				$('#preuzmi').css("visibility", "visible");
+					
 			}
 			else{
 				$("#error").html(xhr.responseText);
@@ -52,3 +54,19 @@ function transfer(){
 
         });
 } 
+
+function clear(){
+	$("#nalogodavac").val("");
+	$("#svrha").val("");
+	$("#primalac").val("");
+	($("#sifraPl").val(""));
+	$("#valuta").val("");
+	($("#iznos").val(""));
+	  $("#racunNal").val("");
+	 ($("#modelNal").val(""));
+	 $("#pozivNaBrNal").val("");
+	 $("#racunPrim").val("");
+	 ($("#modelPrim").val(""));
+	 $("#pozivNaBrPrim").val("");
+	 $('#hitno').prop('checked', false);
+}
