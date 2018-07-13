@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -22,6 +23,88 @@ import com.app.poslovnaBanka.service.NalogService;
 
 @Service
 public class NalogServiceImpl implements NalogService{
+	
+	@Override
+	public void exportNalog(com.app.poslovnaBanka.modeli.NalogZaPrenos nalog) {
+		Element nalogXml = new Element("nalog");
+		
+		Element nalogodavac = new Element("nalogodavac");
+		nalogodavac.setText(nalog.getNalogodavac());
+		
+		Element svrhaPlacanja = new Element("svrha_placanja");
+		svrhaPlacanja.setText(nalog.getSvrhaPlacanja());
+		
+		Element primalac = new Element("primalac");
+		primalac.setText(nalog.getPrimalac());
+		
+		Element datumPrijema = new Element("datum_prijema");
+			datumPrijema.setText(new Date().toString());
+		
+		Element sifraPlacanja = new Element("sifra_placanja");
+		sifraPlacanja.setText(Integer.toString(nalog.getSifraPlacanja()));
+		
+		Element valuta = new Element("valuta");
+		valuta.setText(nalog.getValuta().getNaziv());
+		
+		Element iznos = new Element("iznos");
+		iznos.setText(Double.toString(nalog.getIznos()));
+		
+		Element racunDuznika = new Element("racun_duznika");
+		racunDuznika.setText(nalog.getRacunNalogodavca());
+		
+		Element modelZaduzenja = new Element("model_zaduzenja");
+		modelZaduzenja.setText(Integer.toString(nalog.getModelNalogodavca()));
+		
+		Element pozivNaBrojZaduzenja = new Element("poziv_na_broj_zaduzenja");
+		pozivNaBrojZaduzenja.setText(nalog.getPozivNaBrojNalogodavca());
+		
+		Element racunPrimaoca = new Element("racun_primaoca");
+		racunPrimaoca.setText(nalog.getRacunPrimaoca());
+		
+		Element modelOdobrenja = new Element("model_odobrenja");
+		modelOdobrenja.setText(Integer.toString(nalog.getModelPrimaoca()));
+		
+		Element pozivNaBrojOdobrenja = new Element("poziv_na_broj_odobrenja");
+		pozivNaBrojOdobrenja.setText(nalog.getPozivNaBrojPrimaoca());
+		
+		Element datumValute = new Element("datum_valute");
+			datumValute.setText(new Date().toString());
+		
+		Element hitno = new Element("hitno");
+		if (nalog.isHitno()) {
+			hitno.setText("DA");	
+		} else {
+			hitno.setText("NE");
+		}
+		
+		nalogXml.addContent(nalogodavac);
+		nalogXml.addContent(svrhaPlacanja);
+		nalogXml.addContent(primalac);
+		nalogXml.addContent(datumPrijema);
+		nalogXml.addContent(sifraPlacanja);
+		nalogXml.addContent(valuta);
+		nalogXml.addContent(iznos);
+		nalogXml.addContent(racunDuznika);
+		nalogXml.addContent(modelZaduzenja);
+		nalogXml.addContent(pozivNaBrojZaduzenja);
+		nalogXml.addContent(racunPrimaoca);
+		nalogXml.addContent(modelOdobrenja);
+		nalogXml.addContent(pozivNaBrojOdobrenja);
+		nalogXml.addContent(datumValute);
+		nalogXml.addContent(hitno);
+		
+		XMLOutputter xmlOutput = new XMLOutputter();
+		xmlOutput.setFormat(Format.getPrettyFormat());
+		Document doc = new Document(nalogXml);
+		try {
+			PrintWriter out = new PrintWriter("src/main/resources/static/xml/Nalog.xml");
+			xmlOutput.output(doc, out);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public void export(NalogZaPrenos nalog) {

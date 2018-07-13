@@ -16,6 +16,7 @@ import com.app.poslovnaBanka.modeli.TekuciRacun;
 import com.app.poslovnaBanka.modeli.Valuta;
 import com.app.poslovnaBanka.service.impl.BankaServiceImpl;
 import com.app.poslovnaBanka.service.impl.KlijentServiceImpl;
+import com.app.poslovnaBanka.service.impl.NalogServiceImpl;
 import com.app.poslovnaBanka.service.impl.NalogZaPrenosServiceImpl;
 import com.app.poslovnaBanka.service.impl.TekuciRacunServiceImpl;
 import com.app.poslovnaBanka.service.impl.ValutaServiceImpl;
@@ -39,6 +40,9 @@ public class MBTransferKontroler {
 	@Autowired
 	TekuciRacunServiceImpl tekuciRacunService;
 	
+	@Autowired
+	NalogServiceImpl nalogService;
+	
 	@PostMapping("/transfer")
 	public ResponseEntity<?> transfer( HttpServletRequest request, @RequestBody NalogZaPrenos nzp){
 		if(!isValid(nzp)) {
@@ -56,6 +60,7 @@ public class MBTransferKontroler {
 			//ista banka
 			if(istaBankaTransfer(trPrimaoca,trNalogodavca,nzp)) {
 				nzpService.save(nzp);
+				nalogService.exportNalog(nzp);
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
 			return new ResponseEntity<>("Transver nije uspeo, error na serverskoj strani.", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -65,13 +70,14 @@ public class MBTransferKontroler {
 			if(nzp.getIznos()>250000.0 || nzp.isHitno()) {
 				if(rtgsTransfer(trPrimaoca,trNalogodavca,nzp)) {
 					nzpService.save(nzp);
+					nalogService.exportNalog(nzp);
 					return new ResponseEntity<>(HttpStatus.OK);
 				}
 				return new ResponseEntity<>("Transver nije uspeo, error na serverskoj strani.", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			else {
 				if(csTransfer(trPrimaoca,trNalogodavca,nzp)) {
-
+					nalogService.exportNalog(nzp);
 					return new ResponseEntity<>(HttpStatus.OK);
 				}
 				return new ResponseEntity<>("Transver nije uspeo, error na serverskoj strani.", HttpStatus.INTERNAL_SERVER_ERROR);

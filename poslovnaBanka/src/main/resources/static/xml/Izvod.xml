@@ -2,55 +2,41 @@
 <izvod>
   <zaglavlje>
     <broj_racuna>123123456789012312</broj_racuna>
-    <datum_naloga>2018-07-14</datum_naloga>
-    <prethodno_stanje>8000.0</prethodno_stanje>
-    <broj_promena_u_korist>2</broj_promena_u_korist>
-    <ukupno_u_korist>3000.0</ukupno_u_korist>
-    <broj_promena_na_teret>1</broj_promena_na_teret>
-    <ukupno_na_teret>2000.0</ukupno_na_teret>
-    <novo_stanje>9000.0</novo_stanje>
+    <datum_naloga>2018-07-13</datum_naloga>
+    <prethodno_stanje>9000.0</prethodno_stanje>
+    <broj_promena_u_korist>0</broj_promena_u_korist>
+    <ukupno_u_korist>0.0</ukupno_u_korist>
+    <broj_promena_na_teret>2</broj_promena_na_teret>
+    <ukupno_na_teret>1000.0</ukupno_na_teret>
+    <novo_stanje>8000.0</novo_stanje>
   </zaglavlje>
   <stavke>
     <stavka>
       <duznik_nalogodavac>Dejan Besic</duznik_nalogodavac>
-      <svrha_placanja>Uplata na firmu 4</svrha_placanja>
+      <svrha_placanja>Uplata na firmu 2</svrha_placanja>
       <primalac_poverilac>Stefan Radanovic</primalac_poverilac>
-      <datum_naloga>2018-07-14 00:00:00.0</datum_naloga>
+      <datum_naloga>2018-07-13 00:00:00.0</datum_naloga>
       <racun_duznika>123123456789012312</racun_duznika>
       <model_zaduzenja>97</model_zaduzenja>
       <poziv_na_broj_zaduzenja>poz na br zad</poziv_na_broj_zaduzenja>
       <racun_poverioca>321321098765432121</racun_poverioca>
       <model_odobrenja>97</model_odobrenja>
       <poziv_na_broj_odobrenja>poz na br odob</poziv_na_broj_odobrenja>
-      <iznos>2000.0</iznos>
+      <iznos>500.0</iznos>
       <smer>s</smer>
     </stavka>
     <stavka>
-      <duznik_nalogodavac>Mario Gula</duznik_nalogodavac>
-      <svrha_placanja>Uplata tako random 2</svrha_placanja>
-      <primalac_poverilac>Dejan Besic</primalac_poverilac>
-      <datum_naloga>2018-07-14 00:00:00.0</datum_naloga>
-      <racun_duznika>213987654321032101</racun_duznika>
+      <duznik_nalogodavac>Dejan Besic</duznik_nalogodavac>
+      <svrha_placanja>Uplata na firmu 3</svrha_placanja>
+      <primalac_poverilac>Stefan Radanovic</primalac_poverilac>
+      <datum_naloga>2018-07-13 00:00:00.0</datum_naloga>
+      <racun_duznika>123123456789012312</racun_duznika>
       <model_zaduzenja>97</model_zaduzenja>
       <poziv_na_broj_zaduzenja>poz na br zad</poziv_na_broj_zaduzenja>
-      <racun_poverioca>123123456789012312</racun_poverioca>
+      <racun_poverioca>321321098765432121</racun_poverioca>
       <model_odobrenja>97</model_odobrenja>
       <poziv_na_broj_odobrenja>poz na br odob</poziv_na_broj_odobrenja>
-      <iznos>1500.0</iznos>
-      <smer>s</smer>
-    </stavka>
-    <stavka>
-      <duznik_nalogodavac>Mario Gula</duznik_nalogodavac>
-      <svrha_placanja>Uplata tako random 3</svrha_placanja>
-      <primalac_poverilac>Dejan Besic</primalac_poverilac>
-      <datum_naloga>2018-07-14 00:00:00.0</datum_naloga>
-      <racun_duznika>213987654321032101</racun_duznika>
-      <model_zaduzenja>97</model_zaduzenja>
-      <poziv_na_broj_zaduzenja>poz na br zad</poziv_na_broj_zaduzenja>
-      <racun_poverioca>123123456789012312</racun_poverioca>
-      <model_odobrenja>97</model_odobrenja>
-      <poziv_na_broj_odobrenja>poz na br odob</poziv_na_broj_odobrenja>
-      <iznos>1500.0</iznos>
+      <iznos>500.0</iznos>
       <smer>s</smer>
     </stavka>
   </stavke>

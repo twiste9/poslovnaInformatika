@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nalog>
   <nalogodavac />
-  <svrha_placanja>asd</svrha_placanja>
+  <svrha_placanja />
   <primalac />
-  <mesto_prijema />
-  <datum_prijema />
-  <sifra_placanja />
-  <valuta />
-  <iznos>0.0</iznos>
+  <datum_prijema>Fri Jul 13 20:26:25 CEST 2018</datum_prijema>
+  <sifra_placanja>0</sifra_placanja>
+  <valuta>RSD</valuta>
+  <valuta_sifra />
+  <iznos>123.0</iznos>
   <racun_duznika />
-  <model_zaduzenja />
+  <model_zaduzenja>0</model_zaduzenja>
   <poziv_na_broj_zaduzenja />
-  <racun_primaoca />
-  <model_odobrenja />
+  <racun_primaoca>321321098765432121</racun_primaoca>
+  <model_odobrenja>0</model_odobrenja>
   <poziv_na_broj_odobrenja />
-  <datum_valute />
-  <hitno>DA</hitno>
+  <datum_valute>Fri Jul 13 20:26:25 CEST 2018</datum_valute>
+  <hitno>NE</hitno>
 </nalog>

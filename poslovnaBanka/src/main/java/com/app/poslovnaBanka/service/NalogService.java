@@ -9,5 +9,7 @@ public interface NalogService {
 	void export(NalogZaPrenos nalog);
 	
 	NalogZaPrenos importuj(MultipartFile file);
+
+	void exportNalog(com.app.poslovnaBanka.modeli.NalogZaPrenos nalog);
 	
 }
